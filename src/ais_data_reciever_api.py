@@ -6,28 +6,64 @@ from datetime import timezone
 from fmiopendata.wfs import download_stored_query
 
 
-end_time = dt.datetime.now(timezone.utc)
-start_time = end_time - dt.timedelta(minutes=5)
+ship_mmsi : str = "230704000"
 
-start_time = start_time.strftime("%Y-%m-%dT%H:%M:%SZ")
-end_time = end_time.strftime("%Y-%m-%dT%H:%M:%SZ")
+
+def get_closest_forecast(forecasts, now):
+
+    erotukset = []
+
+    for forecast in forecasts.data.keys():
+        print(forecast, '\n')
+        forecast = forecast.replace(tzinfo=timezone.utc)
+        erotus = abs(now - forecast)
+        erotukset.append(erotus)
+
+    smallest = min(erotukset)
+    idx = erotukset.index(smallest)
+    
+    return list(forecasts.data.keys())[idx]
+
 
 def get_forecast(latlon):
 
-    forecast = download_stored_query(
+    now = dt.datetime.now(timezone.utc)
+
+    end_time = now + dt.timedelta(hours=3)
+    start_time = end_time - dt.timedelta(hours=10)
+
+    start_time = start_time.strftime("%Y-%m-%dT%H:%M:%SZ")
+    end_time = end_time.strftime("%Y-%m-%dT%H:%M:%SZ")
+
+    forecasts = download_stored_query(
         "fmi::forecast::harmonie::surface::point::multipointcoverage",
-        args=["latlon=" + latlon,
-          "parameters=temperature,windspeedms,winddirection,humidity"]
+        args=[
+            "latlon=" + latlon,
+            "parameters=temperature,windspeedms,winddirection,humidity",
+            "starttime=" + start_time,
+            "endtime=" + end_time
+          ]
     )
 
-    current_forecast = min(forecast.data.keys())
-    current_grid = sorted(forecast.data[current_forecast].keys())[0]
-    print(forecast.data[current_forecast][current_grid].items())
+    print(forecasts.data.keys(), '\n')
+
+    closest_forecast_datetime = get_closest_forecast(forecasts, now)
+    print(closest_forecast_datetime, '\n')
+
+
+
+    closest_forecast = forecasts.data[closest_forecast_datetime]
+    current_location = list(closest_forecast.keys())[0]
+    
+    parameters = forecasts.data[closest_forecast_datetime][current_location].items()
+    
+    for parameter, value in parameters:
+        print(parameter, value)
 
 
 
 def on_connect(client, userdata, flags, rc):
-    client.subscribe("vessels-v2/230703000/location")
+    client.subscribe("vessels-v2/" + ship_mmsi + "/location")
     print("Connection established.")
 
 def on_message(client, userdata, msg):
