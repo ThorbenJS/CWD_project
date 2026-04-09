@@ -7,18 +7,14 @@ from fmiopendata.wfs import download_stored_query
 
 
 ship_mmsi : str = "230704000"
-
+counter = 0
 
 def get_closest_forecast(forecasts, now):
-
     erotukset = []
-
     for forecast in forecasts.data.keys():
-        print(forecast, '\n')
         forecast = forecast.replace(tzinfo=timezone.utc)
         erotus = abs(now - forecast)
         erotukset.append(erotus)
-
     smallest = min(erotukset)
     idx = erotukset.index(smallest)
     
@@ -26,12 +22,9 @@ def get_closest_forecast(forecasts, now):
 
 
 def get_forecast(latlon):
-
     now = dt.datetime.now(timezone.utc)
-
     end_time = now + dt.timedelta(hours=3)
     start_time = end_time - dt.timedelta(hours=10)
-
     start_time = start_time.strftime("%Y-%m-%dT%H:%M:%SZ")
     end_time = end_time.strftime("%Y-%m-%dT%H:%M:%SZ")
 
@@ -45,20 +38,14 @@ def get_forecast(latlon):
           ]
     )
 
-    print(forecasts.data.keys(), '\n')
-
     closest_forecast_datetime = get_closest_forecast(forecasts, now)
-    print(closest_forecast_datetime, '\n')
-
-
-
     closest_forecast = forecasts.data[closest_forecast_datetime]
     current_location = list(closest_forecast.keys())[0]
-    
+    print('\n\n----------------------------\n',current_location)
+    print('\nLatitude, Longitude: ', latlon)
     parameters = forecasts.data[closest_forecast_datetime][current_location].items()
-    
     for parameter, value in parameters:
-        print(parameter, value)
+        print('\n', parameter, value)
 
 
 
@@ -71,7 +58,7 @@ def on_message(client, userdata, msg):
     latitude = round(data["lat"], 2)
     longitude = round(data["lon"], 2)
     latlon = str(latitude) + ',' + str(longitude)
-
+    print("Message counter")
     get_forecast(latlon)
 
 
