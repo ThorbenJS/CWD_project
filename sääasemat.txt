@@ -17,13 +17,13 @@ Parainen Utö, FMISID=100908, latlon=59.779094,21.374788
 Parainen Fagerholm, FMISID=100924, latlon=60.111626,21.698278
 Turku Rajakari, FMISID=100947, latlon=60.377880,22.096400
 Kaarina Yltöinen, FMISID=100934, latlon=60.386903,22.551826
-Kumlinge kirkonkylä, FMISID=100928, latlon=60.258229,20.746975
+Kumlinge Kirkonkylä, FMISID=100928, latlon=60.258229,20.746975
 Lumparland Långnäs, FMISID=151048, latlon=60.115843,20.297649
 Lemland Nyhamn, FMISID=100909, latlon=59.959108,19.953736
 Maarianhamina Länsisatama, FMISID=151029, latlon=60.091359,19.929101
 Hammarland Märket, FMISID=100919, latlon=60.300980,19.131420
 Kustavi Isokari, FMISID=101059, latlon=60.722198,21.026810
-Rauma Kylmäpihjala, FMISID=101061, latlon=61.144750,21.302730
+Rauma Kylmäpihlaja, FMISID=101061, latlon=61.144750,21.302730
 Pori Tahkaluoto, FMISID=101267, latlon=61.630419,21.376203
 Kaskinen Sälgrund, FMISID=101256, latlon=62.333816,21.190813
 Korsnäs Bredskäret, FMISID=101479, latlon=62.934880,21.184850
@@ -38,5 +38,5 @@ Raahe Nahkiainen, FMISID=101775, latlon=64.611783,23.896737
 Raahe Lapaluoto, FMISID=101785, latlon=64.665890,24.406950
 Hailuoto Marjaniemi, FMISID=101784, latlon=65.039750,24.561180
 Oulu Vihreäsaari, FMISID=101794, latlon=65.006370,25.393248
-Kemi majakka, FMISID=101783, latlon=65.385078,24.095684
+Kemi Majakka, FMISID=101783, latlon=65.385078,24.095684
 Kemi Ajos, FMISID=101846, latlon=65.673180,24.515193
