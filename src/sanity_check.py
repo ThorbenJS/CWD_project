@@ -2,7 +2,10 @@ import datetime as dt
 from datetime import timezone
 from fmiopendata.wfs import download_stored_query
 import psycopg
+import os
+from dotenv import load_dotenv
 
+load_dotenv()
 
 stations = [
     {"name": "Kotka Haapasaari", "fmisid": 101042, "lat": 60.286758, "lon": 27.184825},
@@ -102,8 +105,8 @@ def insert_data(sensor_values, fmisid, time):
     conn = psycopg.connect(
         host="localhost",
         dbname="weather", 
-        user="cwduser",
-        password='162823'
+        user=os.getenv("PSQL_USER"),
+        password=os.getenv("PSQL_PASSWORD")
     )
     cursor = conn.cursor()
     cursor.execute(
@@ -122,8 +125,8 @@ def insert_stations():
     conn = psycopg.connect(
         host="localhost",
         dbname="weather", 
-        user="cwduser",
-        password='162823'
+        user=os.getenv("PSQL_USER"),
+        password=os.getenv("PSQL_PASSWORD")
     )
     cursor = conn.cursor()
     cursor.executemany(
@@ -143,8 +146,8 @@ def configure_db():
     conn = psycopg.connect(
         host="localhost",
         dbname="weather", 
-        user="cwduser",
-        password='162823'
+        user=os.getenv("PSQL_USER"),
+        password=os.getenv("PSQL_PASSWORD")
     )
     cursor = conn.cursor()
 

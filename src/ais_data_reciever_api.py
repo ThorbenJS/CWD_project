@@ -5,7 +5,6 @@ import datetime as dt
 from datetime import timezone
 from fmiopendata.wfs import download_stored_query
 
-
 ship_mmsi : str = "230704000"
 counter = 0
 
