@@ -3,7 +3,7 @@
 
 ## /src/ais_data_reciever_api.py
 The point of this script was to establish some kind of proof of concept that I could get ship AIS location data from Digitraffic.fi's MQTT based API and run that data directly into a query to the Finnish Metereology Institutes (FMI) API. FMI has their own python library for doing queries and handling responses called **fmiopendata**, which I used.
-This worked quite well since coordinated of a ship could be directly inserted into a query that queries FMIs HARMONIE weather model and gives a forecast on those precise coordinates.
+This worked quite well since coordinates of a ship could be directly inserted into a query that queries FMIs HARMONIE weather model and gives a forecast on those precise coordinates.
 
 ## /src/sanity_check.py
 To check the viability of the forecast data (if it's any good so to say), I had to manually collect forecast data for every hour. Since the model is updated every 6 hours and I do not know when it is updated, this seemed 
