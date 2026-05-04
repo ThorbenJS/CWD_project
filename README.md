@@ -18,3 +18,4 @@ and observations.
 
 ## sääasemat.txt
 A list of the weather stations that were used. I handpicked these staions by looking at a map and seeing if a station was coastal or not. Every station has a name, fmisid and coordinates listed in this file.
+<img width="503" height="750" alt="output2" src="https://github.com/user-attachments/assets/8ef1fb47-1cc4-45e4-a57b-263b5d9dc020" />
