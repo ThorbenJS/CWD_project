@@ -1,7 +1,7 @@
 # Finnish coastal weather data combined with ship AIS location info
 ### A little project where the point was to find out if weather data from finnish coastal waters could be mapped to ship AIS location data of ships that are moving within finnish coastal waters.
 
-## /src/ais_data_reciever_api.py
+## /src/AIS_to_FMI.py
 The point of this script was to establish some kind of proof of concept that I could get ship AIS location data from Digitraffic.fi's MQTT based API and run that data directly into a query to the Finnish Metereology Institutes (FMI) API. FMI has their own python library for doing queries and handling responses called **fmiopendata**, which I used.
 This worked quite well since coordinates of a ship could be directly inserted into a query that queries FMIs HARMONIE weather model and gives a forecast on those precise coordinates.
 
